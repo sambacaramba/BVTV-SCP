@@ -75,6 +75,11 @@ manualThreshold = 0.5;
 ```
 
 The automatic mode generates a diagnostic figure showing nearby threshold choices.
+<img width="533" height="1200" alt="01_Threshold_comparison_ds" src="https://github.com/user-attachments/assets/3e6a8ffd-1caf-4ce9-9c65-df1006409fee" />
+
+An automatic output of thresholding and surface detection is shown from one slice from the middle of the stack to see if surface is detected from the correct place
+<img width="1546" height="2131" alt="05_ROI_segmentation_and_surface_detection" src="https://github.com/user-attachments/assets/b4d4bb7e-0186-427f-8a64-5bacc5a11158" />
+
 
 ## Segmentation workflow
 
@@ -164,11 +169,7 @@ Folder selection uses:
 
 https://www.mathworks.com/matlabcentral/fileexchange/10867-uipickfiles-uigetfile-on-steroids
 
-## Video
 
-For a longer demonstration:
-
-[![Watch the BVTV-SCP workflow](media/video_thumbnail.png)](YOUR_YOUTUBE_LINK)
 
 
 
