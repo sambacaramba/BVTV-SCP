@@ -205,7 +205,7 @@ and the same physical 300 µm radius becomes approximately:
 300 / 29.68 ≈ 10 pixels
 ```
 
-This allows the algorithm to use approximately the **same physical neighbourhood size regardless of binning**.
+This allows the algorithm to use approximately the **same physical neighborhood size regardless of binning**.
 
 It is therefore important that `nativePixelSize_um` is correct.
 
@@ -217,7 +217,7 @@ It is therefore important that `nativePixelSize_um` is correct.
 radius_um = 300;
 ```
 
-Defines the **radius of the local neighbourhood** used during the local BV/TV-based trabecular-removal step.
+Defines the **radius of the local neighborhood** used during the local BV/TV-based trabecular-removal step.
 
 Units:
 
@@ -240,7 +240,7 @@ gives approximately:
 20 pixel radius
 ```
 
-The algorithm evaluates the amount of bone inside this circular neighbourhood at each location.
+The algorithm evaluates the amount of bone inside this circular neighborhood at each location.
 
 ### Effect of changing the radius
 
@@ -340,7 +340,7 @@ removalPercentage = 0.80;
 
 Defines the local bone-fraction threshold used to distinguish dense subchondral bone from trabecular-like regions.
 
-The algorithm evaluates a circular neighbourhood around each location.
+The algorithm evaluates a circular neighborhood around each location.
 
 For:
 
@@ -354,7 +354,7 @@ at least:
 80%
 ```
 
-of the valid local neighbourhood must contain bone for the location to remain.
+of the valid local neighborhood must contain bone for the location to remain.
 
 If the local foreground fraction is below 80%, the voxel is classified as trabecular-like and removed from the output mask.
 
@@ -380,7 +380,7 @@ requires a denser local bone region.
 
 This generally produces more aggressive removal of trabecular structures.
 
-This parameter works together with `radius_um`. A percentage threshold has different spatial meaning depending on the size of the neighbourhood over which it is calculated.
+This parameter works together with `radius_um`. A percentage threshold has different spatial meaning depending on the size of the neighborhood over which it is calculated.
 
 ---
 
@@ -394,7 +394,7 @@ Controls the initial estimate of the **lower boundary of the subchondral plate**
 
 After the upper surface has been detected, the algorithm searches downward through the binary bone volume.
 
-At each position it evaluates the fraction of foreground bone inside a small 3-D neighbourhood.
+At each position it evaluates the fraction of foreground bone inside a small 3-D neighborhood.
 
 When the local bone fraction drops below `ratioLimit`, that position is used as an estimate of the transition from dense subchondral bone toward trabecular bone.
 
@@ -404,7 +404,7 @@ For example:
 ratioLimit = 0.50;
 ```
 
-means that the lower-boundary criterion is reached when less than approximately half of the local neighbourhood consists of bone.
+means that the lower-boundary criterion is reached when less than approximately half of the local neighborhood consists of bone.
 
 Typical values to test are approximately:
 
@@ -476,11 +476,7 @@ This parameter is currently defined in pixels, so its physical size changes when
 nanFillParameter = 100;
 ```
 
-Defines the size of the local neighbourhood used by `FillNaNs` to fill **enclosed missing regions** in the detected surface maps.
-
-Despite the name, this is **not a number of iterations**.
-
-It is a neighbourhood size in pixels.
+Defines the size of the local neighborhood used by `FillNaNs` to fill **enclosed missing regions** in the detected surface maps.
 
 For each enclosed NaN position, the function looks at nearby valid surface values and uses their median as the replacement value.
 
@@ -488,25 +484,23 @@ NaN regions connected to the outside of the surface remain NaN and are not fille
 
 ### Effect of changing the value
 
-**Smaller neighbourhood**
+**Smaller neighborhood**
 
 - uses only nearby surface values
 - better preserves local variation
 - may fail to fill the centre of large holes if no valid values are nearby
 
-**Larger neighbourhood**
+**Larger neighborhood**
 
 - can bridge larger gaps
 - uses information from farther away
 - may smooth over genuine local geometry if excessively large
 
-An odd value such as:
+Example output images: 
+<img width="1843" height="2189" alt="03_NaN_hole_detection" src="https://github.com/user-attachments/assets/455f1e3b-dde7-4fff-badd-9deabdb3cb81" />
+<img width="1843" height="2189" alt="04_NaN_hole_detection" src="https://github.com/user-attachments/assets/a797100f-29bb-42ae-8efb-e34c81f2031d" />
 
-```matlab
-nanFillParameter = 101;
-```
 
-is preferable because it gives the neighbourhood a true centre pixel.
 
 ---
 
@@ -526,7 +520,7 @@ pixels
 
 Surface estimates near the outer boundary of the sample can be less reliable because:
 
-- neighbourhoods may extend outside the object
+- neighborhoods may extend outside the object
 - surface detection may be incomplete
 - image edges may contain segmentation artefacts
 
@@ -574,7 +568,7 @@ Connected objects are identified using 3-D connectivity, and the **largest conne
 
 Advantages:
 
-- uses connectivity between neighbouring slices
+- uses connectivity between neighboring slices
 - generally produces a more spatially consistent segmentation
 - removes isolated objects that are not connected to the main bone structure
 
@@ -600,7 +594,7 @@ Advantages:
 Disadvantages:
 
 - does not use full 3-D connectivity
-- objects may be treated differently between neighbouring planes
+- objects may be treated differently between neighboring planes
 
 Use 2-D mode primarily when the complete volume is too large to process comfortably in memory.
 
